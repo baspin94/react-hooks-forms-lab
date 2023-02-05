@@ -4,23 +4,24 @@ import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
 
-function ShoppingList({ items }) {
+function ShoppingList({ items, setItems }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [foodGroup, setFoodGroup] = useState("Produce");
-  const [formData, setFormData] = useState({
+  const initialFormState = {
     name: "",
     category: foodGroup,
-  })
+  };
+  const [formData, setFormData] = useState(initialFormState);
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
-  }
+  };
 
   function handleSearch(event) {
     const newSearch = event.target.value;
     setSearch(newSearch);
-  }
+  };
 
   function handleInput(event) {
     const key = event.target.name;
@@ -29,7 +30,7 @@ function ShoppingList({ items }) {
       ...formData,
       [key]: value
     })
-  }
+  };
 
   function handleFoodGroupChange(event) {
     const newFoodGroup = event.target.value;
@@ -38,7 +39,7 @@ function ShoppingList({ items }) {
       ...formData,
       category: newFoodGroup
     })
-  }
+  };
 
   function handleSubmit(event){
     event.preventDefault();
@@ -48,8 +49,11 @@ function ShoppingList({ items }) {
       name: formData.name,
       category: foodGroup
     };
-    console.log(newItem);
-  }
+    const updatedItems = [...items, newItem];
+    setItems(updatedItems);
+    setFoodGroup("Produce");
+    setFormData(initialFormState);
+  };
 
   const itemsToDisplay = items
     .filter((item) => {
@@ -77,6 +81,6 @@ function ShoppingList({ items }) {
       </ul>
     </div>
   );
-}
+};
 
 export default ShoppingList;
