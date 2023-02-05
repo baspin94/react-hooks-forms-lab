@@ -39,6 +39,11 @@ function ShoppingList({ items }) {
     })
   }
 
+  function handleSubmit(event){
+    event.preventDefault();
+    console.log("You just submitted this form!")
+  }
+
   const itemsToDisplay = items
     .filter((item) => {
         if (selectedCategory === "All") return true;
@@ -51,7 +56,12 @@ function ShoppingList({ items }) {
 
   return (
     <div className="ShoppingList">
-      <ItemForm formData={formData} onInput={handleInput} foodGroup={foodGroup} onChangeFoodGroup={handleFoodGroupChange}/>
+      <ItemForm 
+        formData={formData} 
+        onInput={handleInput} 
+        foodGroup={foodGroup} 
+        onChangeFoodGroup={handleFoodGroupChange}
+        onItemFormSubmit={handleSubmit}/>
       <Filter search={search} onSearchChange={handleSearch} onCategoryChange={handleCategoryChange} />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
