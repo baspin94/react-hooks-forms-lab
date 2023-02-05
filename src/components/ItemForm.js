@@ -1,12 +1,12 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 
-function ItemForm(props) {
+function ItemForm({ formData, onInput }) {
   return (
     <form className="NewItem">
       <label>
         Name:
-        <input type="text" name="name" />
+        <input type="text" name="name" value={formData.name} onChange={onInput}/>
       </label>
 
       <label>
