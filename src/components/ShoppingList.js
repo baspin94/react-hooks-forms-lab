@@ -43,7 +43,6 @@ function ShoppingList({ items, setItems }) {
 
   function handleSubmit(event){
     event.preventDefault();
-    console.log("You just submitted this form!");
     const newItem = {
       id: uuid(),
       name: formData.name,
@@ -53,6 +52,7 @@ function ShoppingList({ items, setItems }) {
     setItems(updatedItems);
     setFoodGroup("Produce");
     setFormData(initialFormState);
+
   };
 
   const itemsToDisplay = items
@@ -68,7 +68,7 @@ function ShoppingList({ items, setItems }) {
   return (
     <div className="ShoppingList">
       <ItemForm 
-        formData={formData} 
+        name={formData.name} 
         onInput={handleInput} 
         foodGroup={foodGroup} 
         onChangeFoodGroup={handleFoodGroupChange}

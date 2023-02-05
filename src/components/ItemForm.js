@@ -1,13 +1,13 @@
 import React from "react";
 
 
-function ItemForm({ formData, onInput, foodGroup, onChangeFoodGroup, onItemFormSubmit }) {
-  
+function ItemForm({ name, onInput, foodGroup, onChangeFoodGroup, onItemFormSubmit }) {
+
   return (
     <form className="NewItem" onSubmit={onItemFormSubmit}>
       <label>
         Name:
-        <input type="text" name="name" value={formData.name} onChange={onInput}/>
+        <input type="text" name={"name"} value={name} onChange={onInput}/>
       </label>
 
       <label>
