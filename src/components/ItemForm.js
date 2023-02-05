@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 
-function ItemForm({ formData, onInput }) {
+function ItemForm({ formData, onInput, foodGroup, onChangeFoodGroup }) {
   return (
     <form className="NewItem">
       <label>
@@ -11,7 +11,7 @@ function ItemForm({ formData, onInput }) {
 
       <label>
         Category:
-        <select name="category">
+        <select name="category" value={foodGroup} onChange={onChangeFoodGroup}>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
           <option value="Dessert">Dessert</option>

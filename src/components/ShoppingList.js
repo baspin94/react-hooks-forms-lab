@@ -8,7 +8,7 @@ function ShoppingList({ items }) {
   const [search, setSearch] = useState("");
   const [foodGroup, setFoodGroup] = useState("Produce");
   const [formData, setFormData] = useState({
-    name: "banana",
+    name: "",
     category: foodGroup,
   })
 
@@ -30,6 +30,15 @@ function ShoppingList({ items }) {
     })
   }
 
+  function handleFoodGroupChange(event) {
+    const newFoodGroup = event.target.value;
+    setFoodGroup(newFoodGroup);
+    setFormData({
+      ...formData,
+      category: newFoodGroup
+    })
+  }
+
   const itemsToDisplay = items
     .filter((item) => {
         if (selectedCategory === "All") return true;
@@ -42,7 +51,7 @@ function ShoppingList({ items }) {
 
   return (
     <div className="ShoppingList">
-      <ItemForm formData={formData} onInput={handleInput} foodGroup={foodGroup}/>
+      <ItemForm formData={formData} onInput={handleInput} foodGroup={foodGroup} onChangeFoodGroup={handleFoodGroupChange}/>
       <Filter search={search} onSearchChange={handleSearch} onCategoryChange={handleCategoryChange} />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
