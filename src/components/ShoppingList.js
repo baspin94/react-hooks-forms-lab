@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
@@ -41,7 +42,13 @@ function ShoppingList({ items }) {
 
   function handleSubmit(event){
     event.preventDefault();
-    console.log("You just submitted this form!")
+    console.log("You just submitted this form!");
+    const newItem = {
+      id: uuid(),
+      name: formData.name,
+      category: foodGroup
+    };
+    console.log(newItem);
   }
 
   const itemsToDisplay = items
