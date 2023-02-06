@@ -6,6 +6,7 @@ import App from "../components/App";
 test("calls the onItemFormSubmit callback prop when the form is submitted", () => {
   const onItemFormSubmit = jest.fn();
   render(<ItemForm onItemFormSubmit={onItemFormSubmit} />);
+  
 
   fireEvent.change(screen.queryByLabelText(/Name/), {
     target: { value: "Ice Cream" },
@@ -16,6 +17,7 @@ test("calls the onItemFormSubmit callback prop when the form is submitted", () =
   });
 
   fireEvent.submit(screen.queryByText(/Add to List/));
+  screen.debug();
 
   expect(onItemFormSubmit).toHaveBeenCalledWith(
     expect.objectContaining({

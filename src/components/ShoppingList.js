@@ -3,15 +3,10 @@ import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
 
-function ShoppingList({ itemName, itemCategory, items, onItemFormSubmit, onInputChange, onFoodGroupChange }) {
+function ShoppingList({ items, onItemFormSubmit }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearch] = useState("");
-  //const [foodGroup, setFoodGroup] = useState("Produce");
-  //const initialFormState = {
-  //  name: "",
-  //  category: foodGroup,
-  //};
-  //const [formData, setFormData] = useState(initialFormState);
+  
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
@@ -21,6 +16,7 @@ function ShoppingList({ itemName, itemCategory, items, onItemFormSubmit, onInput
     const newSearch = event.target.value;
     setSearch(newSearch);
   };
+
   const itemsToDisplay = items
     .filter((item) => {
         if (selectedCategory === "All") return true;
@@ -32,10 +28,6 @@ function ShoppingList({ itemName, itemCategory, items, onItemFormSubmit, onInput
   return (
     <div className="ShoppingList">
       <ItemForm 
-        itemName={itemName}
-        itemCategory={itemCategory}
-        onInputChange={onInputChange}
-        onFoodGroupChange={onFoodGroupChange}
         onItemFormSubmit={onItemFormSubmit}/>
       <Filter search={search} onSearchChange={handleSearch} onCategoryChange={handleCategoryChange} />
       <ul className="Items">
