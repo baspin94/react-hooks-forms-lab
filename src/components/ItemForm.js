@@ -1,21 +1,34 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 
 
-function ItemForm({ name, onInput, foodGroup, onChangeFoodGroup, onItemFormSubmit }) {
+function ItemForm({ itemName, itemCategory, onInputChange, onFoodGroupChange, onItemFormSubmit }) {
+  
+  function handleSubmit(event){
+    event.preventDefault();
+    debugger;
+    const newItem = {
+      id: uuid(),
+      name: itemName,
+      category: itemCategory,
+    };
+    debugger;
+    onItemFormSubmit(newItem);
+  };
 
   return (
-    <form className="NewItem" onSubmit={onItemFormSubmit}>
+    <form className="NewItem" onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name={"name"} value={name} onChange={onInput}/>
+        <input type="text" name={"name"} value={itemName} onChange={onInputChange}/>
       </label>
 
       <label>
         Category:
         <select 
           name="category" 
-          value={foodGroup} 
-          onChange={onChangeFoodGroup} 
+          value={itemCategory} 
+          onChange={onFoodGroupChange} 
         >
             <option value="Produce">Produce</option>
             <option value="Dairy">Dairy</option>
